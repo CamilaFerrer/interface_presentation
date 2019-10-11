@@ -51,3 +51,17 @@ INSTALLED_APPS = [
 from filebrowser.sites import site
 site.directory = ""
 ```
+
+- Instalar os pacotes no seu ambiente virtual:
+
+```bash
+pip install -r requirements.txt
+```
+
+- Fazer as migrações e iniciar o app na porta 8080:
+
+```bash
+python manage.py makemigrations
+python manage.py migrate
+python manage.py runserver localhost:8080
+```
