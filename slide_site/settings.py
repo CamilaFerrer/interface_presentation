@@ -16,7 +16,7 @@ SECRET_KEY = '!a7$w&kjxn-%19h6apt+hzyre2*aod-u*m(9i=q=j$#%+)jjkv'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.88.224']
+ALLOWED_HOSTS = ['localhost']
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
@@ -144,9 +144,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'HOST': 'localhost',
-        'NAME': 'embrapii_camila',
-        'USER': 'camila.ferrer',
-        'PASSWORD': 'Y32jaCUD',
+        'NAME': 'db_admin',
+        'USER': 'admin',
+        'PASSWORD': 'pw123',
         'PORT': '3306',
     }
 }
