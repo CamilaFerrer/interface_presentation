@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load staticfiles cms_tags widget_tweaks %}
+
+{% block title %}{% page_attribute "page_title" %}{% endblock title %}
+
+
+{% block content %}
+
+    <form method="POST">
+        {% csrf_token %}
+        <h2 style="text-align: center;">Certeza que quer excluir essa apresentação?</h2>
+        <br>
+
+        <h3>Título:</h3>
+        {{ presentation.title }}
+        <br>
+        <h3>Descrição:</h3>
+        {{ presentation.description }}
+        
+        <br>
+        <br>
+        <div style="text-align: center;">
+            <input type="submit" class="btn btn-primary" value="Excluir"/>
+            <a href="{% url 'presentation-new' %}" class="btn btn-primary">Voltar</a>
+        </div>
+
+    </form>
+
+	{% placeholder "content" %}
+{% endblock content %}

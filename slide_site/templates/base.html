@@ -1,0 +1,149 @@
+{% load staticfiles cms_tags sekizai_tags menu_tags %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Embrapii Presentations</title>
+    <link rel="icon" href="{% static 'img/embrapii.ico' %}">
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/base.css' %}" rel="stylesheet">
+
+    <!-- TinyMCE script -->
+    <script src='https://cloud.tinymce.com/stable/tinymce.min.js'></script>
+    <script>
+    tinymce.init({
+      selector: 'textarea',
+      height: 300,
+      width: 500,
+      extended_valid_elements: 'img[class=myclass|!src|border:0|alt|title|width|height|style]',
+      invalid_elements: 'strong,b,em,i',
+      content_css: [
+        '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
+        '//www.tinymce.com/css/codepen.min.css'
+      ]
+    },
+    {
+      selector: 'readonly',
+      height: 300,
+      width: 500,
+      extended_valid_elements: 'img[class=myclass|!src|border:0|alt|title|width|height|style]',
+      invalid_elements: 'strong,b,em,i',
+      content_css: [
+        '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
+        '//www.tinymce.com/css/codepen.min.css'
+      ]
+    });
+    </script>
+
+    <!--Get your code at fontawesome.com-->
+    <script src="https://kit.fontawesome.com/f8dfd6053a.js" crossorigin="anonymous"></script>
+
+    <!-- django CMS -->
+    {% render_block "css" %}
+
+    <!-- django CMS toolbar adjustment -->
+    {% if request.toolbar %}
+    <style>
+      .cms-toolbar-expanded .navbar.fixed-top {
+          margin-top: 45px;
+      }
+    </style>
+    {% endif %}
+
+  </head>
+
+  <body>
+    <!-- django CMS Toolbar -->
+    {% cms_toolbar %}
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+      <div class="container">
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            {% with dropdown=True %}
+              {% show_menu 0 100 100 100 "includes/menu.html" %}
+            {% endwith %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Header -->
+    {% placeholder header or %}
+    <header class="masthead" style="background-image: url('{% static 'img/header-documents.jpg' %}')">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-10 mx-auto">
+            <div class="page-heading">
+              <h1>{% page_attribute "page_title" %}</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    {% endplaceholder %}
+
+    
+
+    <!-- Main Content -->
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 col-md-10 mx-auto">
+          {% block content %}{% endblock %}
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="row" >
+          <div class="col-lg-12 col-md-10 mx-auto">
+            <ul class="list-inline">
+              <li class="list-inline-item" style="width: 30%;">
+                {% show_menu 0 100 100 100 "includes/footer.html" %}
+              </li>
+              {% comment %} <li class="list-inline-item" style="float:right; width: 60%;">
+                <iframe align="left" width="100%" height="200px" frameborder="0" style="border:0;" allowfullscreen="" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3839.256756223293!2d-47.88112588460177!3d-15.790409927064935!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935a3aef3c3f91c7%3A0x3b9f2b74026a7485!2sEMBRAPII%20-%20Empresa%20Brasileira%20de%20Pesquisa%20e%20Inova%C3%A7%C3%A3o%20Industrial!5e0!3m2!1spt-BR!2sbr!4v1568202898378!5m2!1spt-BR!2sbr"></iframe>
+                <p class="adress">Edifício Armando Monteiro Neto, 13º e 14º andares<br>SBN Quadra 01 Bloco I, Asa Norte, Brasília-DF. CEP: 70.040-913</p>
+              </li> {% endcomment %}
+            </ul>
+          </div>
+        </div>
+        <p class="copyright">&copy; 2019 EMBRAPII. Empresa Brasileira de Pesquisa e Inovação Industrial.<br>Organização Social qualificada pelo Decreto de 02/09/2013 e supervisionada pelo Ministério da Ciência, Tecnologia e Inovação (MCTI).</p>
+      </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="{% static 'js/base.min.js' %}"></script>
+
+    <!-- django CMS -->
+    {% render_block "js" %}
+    
+  </body>
+
+</html>

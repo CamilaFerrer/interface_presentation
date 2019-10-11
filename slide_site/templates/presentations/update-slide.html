@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load staticfiles cms_tags widget_tweaks %}
+
+{% block title %}{% page_attribute "page_title" %}{% endblock title %}
+
+
+{% block content %}
+
+    <form method="POST">
+        {% csrf_token %}
+        
+        {{ form.content }}
+        
+        <input type="submit" class="btn btn-primary" value="Atualizar"/>
+        <a href="{% url 'slides-view' slide.presentation.id %}" class="btn btn-primary">Voltar</a>
+    </form>
+
+	{% placeholder "content" %}
+{% endblock content %}

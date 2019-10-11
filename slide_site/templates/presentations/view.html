@@ -1,0 +1,50 @@
+{% load staticfiles cms_tags sekizai_tags menu_tags %}
+
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+
+		<title>{{ presentation.title}}</title>
+
+		<meta name="description" content="{{ presentation.description}}">
+		<meta name="author" content="{{ presentation.author.first_name}} {{ presentation.author.last_name}}">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<link rel="stylesheet" href="{% static 'revealjs/css/reset.css' %}">
+		<link rel="stylesheet" href="{% static 'revealjs/css/reveal.css' %}">
+		<link rel="stylesheet" href="{% static 'revealjs/css/theme/black.css' %}">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="{% static 'revealjs/lib/css/monokai.css' %}">
+
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				{% for slide in slides %}
+					<section>
+						{{ slide.content | safe}}
+					</section>
+				{% endfor %}
+			</div>
+		</div>
+
+		<script src="{% static 'revealjs/js/reveal.js' %}"></script>
+
+		<script>
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true }
+				]
+			});
+		</script>
+	</body>
+</html>

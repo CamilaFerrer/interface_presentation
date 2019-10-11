@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load staticfiles cms_tags widget_tweaks %}
+
+{% block title %}{% page_attribute "page_title" %}{% endblock title %}
+
+
+{% block content %}
+
+    <form method="POST">
+        {% csrf_token %}
+        
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Título</span>
+            </div>
+            {% render_field form.title class+="form-control" %}
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Descrição</span>
+            </div>
+            {% render_field form.description class+="form-control" %}
+        </div>
+        
+        <input type="submit" class="btn btn-primary" value="Atualizar"/>
+        <a href="{% url 'presentation-new' %}" class="btn btn-primary">Voltar</a>
+    </form>
+
+	{% placeholder "content" %}
+{% endblock content %}

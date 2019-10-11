@@ -1,0 +1,5 @@
+{% load sections %}
+
+{% for child in children %}
+    <section>{{ child.attr.content|default:child.get_defeult_content }}</section>
+{% endfor %}

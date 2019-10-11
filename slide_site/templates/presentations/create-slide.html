@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% load staticfiles cms_tags widget_tweaks %}
+
+{% block title %}{% page_attribute "page_title" %}{% endblock title %}
+
+
+{% block content %}
+
+	<div class="row">
+		<div class="col-lg-6 col-md-5 mx-auto" style="text-align: center;">
+			
+			<h2>{{ presentation.title }}</h2>
+
+			{% for slide in slides %}
+				
+				<br>
+				<iframe src="{% url 'slide-preview' slide.id %}"  width="500" height="400"  ></iframe>
+				{% comment %} <textarea>{{ slide.content }}</textarea> {% endcomment %}
+				<br>
+				<a href="{% url 'slide-update' slide.id %}" class="btn btn-primary">Editar</a>
+				<a href="{% url 'slide-delete' slide.id %}" class="btn btn-primary">Excluir</a>
+				<a href="{% url 'presentation-new' %}" class="btn btn-primary">Voltar</a>
+			{% endfor %}
+
+			
+			
+			
+			<div class="col-lg-6 col-md-5 mx-auto" style="text-align: center;">
+				{% if slides.has_other_pages %}
+					<ul class="pagination">
+						{% if slides.has_previous %}
+							<li><a href="?page={{ slides.previous_page_number }}">&laquo;</a></li>
+						{% else %}
+							<li class="disabled"><span style="padding:10px 10px;">&laquo;</span></li>
+						{% endif %}
+						{% for i in slides.paginator.page_range %}
+							{% if slides.number == i %}
+								<li class="active"><span style="padding:10px 10px;">{{ i }} <span class="sr-only" style="padding:10px 10px;">(current)</span></span></li>
+							{% else %}
+								<li><a href="?page={{ i }}" style="padding:10px 10px;">{{ i }}</a></li>
+							{% endif %}
+						{% endfor %}
+						{% if slides.has_next %}
+							<li><a href="?page={{ slides.next_page_number }}">&raquo;</a></li>
+						{% else %}
+							<li class="disabled"><span style="padding:10px 10px;">&raquo;</span></li>
+						{% endif %}
+					</ul>
+				{% endif %}
+				<br>
+				<br>
+			</div>
+			
+		</div>
+		<div class="col-lg-6 col-md-5 mx-auto" style="text-align: center;">
+			<h2>Crie um novo slide</h2>
+			<br>
+			<form method="POST">
+				{% csrf_token %}
+				
+				{{ form.content | safe }}
+
+				<br>
+				<input type="submit" formnovalidate class="btn btn-primary" value="Criar"/>
+
+			</form>
+
+		</div>
+	</div>
+
+	{% placeholder "content" %}
+{% endblock content %}
