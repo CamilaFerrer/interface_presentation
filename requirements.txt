@@ -18,7 +18,7 @@ Django==1.11.24
 django-absolute==0.3
 django-appconf==1.0.3
 django-classy-tags==0.9.0
-django-cms==3.6.0
+django-cms==3.6.1
 django-emailit==0.2.4
 django-form-designer==0.8.0
 django-formtools==2.1
