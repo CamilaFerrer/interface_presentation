@@ -36,7 +36,7 @@ enum34==1.0.4
 et-xmlfile==1.0.1
 gssapi==1.2.0
 hashids==1.2.0
-html5lib==0.999
+html5lib==0.99999999
 idna==2.4
 iniparse==0.4
 ipaclient==4.6.4
