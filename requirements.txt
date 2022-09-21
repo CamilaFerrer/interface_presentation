@@ -48,7 +48,7 @@ IPy==0.75
 javapackages==1.0.0
 jdcal==1.4.1
 jsonfield==2.0.2
-jwcrypto==0.4.2
+jwcrypto==1.4
 kitchen==1.1.1
 lxml==4.2.3
 mysql-connector-python==8.0.16
